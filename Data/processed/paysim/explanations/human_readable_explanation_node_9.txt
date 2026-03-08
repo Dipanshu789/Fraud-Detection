@@ -1,0 +1,20 @@
+Explanation for Node 9:
+  Predicted as FRAUD.
+
+  Most important features contributing to fraud prediction:
+    - feature_8: Importance = 0.0000 (Value = 0.4780)
+    - feature_6: Importance = 0.0000 (Value = 1.0906)
+    - feature_7: Importance = 0.0000 (Value = 0.1377)
+    - feature_5: Importance = 0.0000 (Value = -1.1600)
+    - feature_9: Importance = 0.0000 (Value = 0.0380)
+
+  Most influential neighbor connections:
+    (Warning: Subgraph node IDs mapped sequentially due to missing explanation.mapping, might be inaccurate for global IDs)
+    - Edge from 88 to 67 (Importance: 0.0000)
+    - Edge from 96 to 86 (Importance: 0.0000)
+    - Edge from 76 to 20 (Importance: 0.0000)
+    - Edge from 19 to 81 (Importance: 0.0000)
+    - Edge from 80 to 74 (Importance: 0.0000)
+    (Warning: Subgraph node IDs mapped sequentially for pattern detection, might be inaccurate for global IDs)
+
+  Identified fraud pattern in the neighborhood: Other

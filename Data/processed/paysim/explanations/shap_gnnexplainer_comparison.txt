@@ -1,0 +1,28 @@
+Comparison of Feature Importance Rankings:
+
+SHAP Feature Importance (MLP Baseline):
+feature_5       0.051930
+feature_8       0.041853
+feature_9       0.038545
+total_amount    0.036470
+in_degree       0.035610
+feature_7       0.030621
+pagerank        0.029081
+feature_6       0.027069
+tx_count        0.019023
+out_degree      0.008887
+
+GNNExplainer Feature Importance (GNN Model):
+out_degree      0.594155
+tx_count        0.506064
+feature_8       0.498227
+feature_5       0.423632
+total_amount    0.412574
+feature_7       0.395709
+pagerank        0.314818
+feature_6       0.290544
+in_degree       0.208874
+feature_9       0.169317
+
+Discussion:
+The SHAP explanation for the MLP baseline model highlights features important for classification based purely on node attributes. In contrast, GNNExplainer provides insights into both node features and graph structure (e.g., influential edges) for the GNN model. Differences in rankings between SHAP and GNNExplainer can reveal how the graph structure (relationships between nodes) influences predictions. For instance, if GNNExplainer emphasizes features that are less important for SHAP, it might indicate these features become crucial when combined with neighborhood information. Conversely, if SHAP highlights features that are less emphasized by GNNExplainer, it could suggest the GNN implicitly learns to de-emphasize them in favor of structural patterns or other features in the graph context. The explicit identification of important edges by GNNExplainer is an added value that SHAP on an MLP cannot provide, demonstrating how neighborhood connectivity contributes to fraud detection.

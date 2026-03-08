@@ -1,0 +1,20 @@
+Explanation for Node 36:
+  Predicted as FRAUD.
+
+  Most important features contributing to fraud prediction:
+    - feature_8: Importance = 0.0000 (Value = 1.3228)
+    - feature_6: Importance = 0.0000 (Value = 1.4753)
+    - feature_7: Importance = 0.0000 (Value = 0.3384)
+    - feature_5: Importance = 0.0000 (Value = -0.5912)
+    - feature_9: Importance = 0.0000 (Value = -0.6114)
+
+  Most influential neighbor connections:
+    (Warning: Subgraph node IDs mapped sequentially due to missing explanation.mapping, might be inaccurate for global IDs)
+    - Edge from 88 to 67 (Importance: 0.0000)
+    - Edge from 96 to 86 (Importance: 0.0000)
+    - Edge from 76 to 20 (Importance: 0.0000)
+    - Edge from 19 to 81 (Importance: 0.0000)
+    - Edge from 80 to 74 (Importance: 0.0000)
+    (Warning: Subgraph node IDs mapped sequentially for pattern detection, might be inaccurate for global IDs)
+
+  Identified fraud pattern in the neighborhood: Other

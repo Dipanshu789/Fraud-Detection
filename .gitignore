@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+
+# Node
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.eslintcache
+
+# Project specific
+.env
+mlruns/
+mlflow.db
+.DS_Store
+Thumbs.db
+
+# Large data
+Data/raw/
+Data/processed/*.csv
+Data/graphs/*.pt
+mlruns/
+*.log
+*.csv
+*.pt
+
+# Whitelist small models
+!src/models/checkpoints/*.pt

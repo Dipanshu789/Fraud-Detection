@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0e1a;
+  --accent: #00d4ff;
+  --fraud: #ff2d55;
+  --safe: #00ff88;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--background);
+  color: #fff;
+  font-family: 'Space Mono', monospace;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-syne {
+  font-family: 'Syne', sans-serif;
+}
+
+/* Custom Scanline Effect */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.06),
+    rgba(0, 255, 0, 0.02),
+    rgba(0, 0, 255, 0.06)
+  );
+  z-index: 50;
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+}
+
+.glow-border {
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.1);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.fraud-pulse {
+  animation: fraud-flash 1.5s infinite;
+}
+
+@keyframes fraud-flash {
+  0% { background-color: rgba(255, 45, 85, 0); }
+  50% { background-color: rgba(255, 45, 85, 0.2); }
+  100% { background-color: rgba(255, 45, 85, 0); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0e1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00d4ff;
+}

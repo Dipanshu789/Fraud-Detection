@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  # FastAPI GNN Inference Service
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sentinelflow-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./Data:/app/Data
+      - ./mlruns:/app/mlruns
+    environment:
+      - MODEL_PATH=${MODEL_PATH:-src/models/checkpoints/GraphSAGE_best_model.pt}
+      - GRAPH_PATH=${GRAPH_PATH:-Data/graphs/paysim/paysim_full_graph.pt}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - MLFLOW_TRACKING_URI=${MLFLOW_TRACKING_URI:-http://mlflow:5000}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    depends_on:
+      - redis
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/api/v1/health/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - sentinel-net
+
+  # React Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sentinelflow-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=/api/v1
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - sentinel-net
+
+  # Redis for Caching and Prediction state
+  redis:
+    image: redis:7-alpine
+    container_name: sentinelflow-redis
+    ports:
+      - "6379:6379"
+    restart: always
+    networks:
+      - sentinel-net
+
+  # MLflow for Model Tracking
+  mlflow:
+    image: python:3.11-slim
+    container_name: sentinelflow-mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/mlruns
+    working_dir: /mlruns
+    command: >
+      bash -c "pip install mlflow && mlflow server --host 0.0.0.0 --backend-store-uri sqlite:///mlflow.db --default-artifact-root /mlruns"
+    networks:
+      - sentinel-net
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: sentinelflow-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - sentinel-net
+
+networks:
+  sentinel-net:
+    driver: bridge
