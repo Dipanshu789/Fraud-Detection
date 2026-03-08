@@ -2,7 +2,7 @@
 
 SentinelFlow is a production-grade financial fraud detection platform leveraging **Graph Neural Networks (GNNs)** to identify suspicious transaction patterns in real-time.
 
-## 🚀 Quick Start
+##  Quick Start
 
 Follow these steps to deploy the full stack using Docker:
 
@@ -24,14 +24,14 @@ docker-compose up --build
 - **MLflow Tracking**: [http://localhost:5000](http://localhost:5000)
 - **Prometheus Metrics**: `http://localhost/metrics`
 
-## 🏗️ Architecture
+##  Architecture
 
 - **Frontend**: React/Vite + Tailwind CSS + Framer Motion (Cyberpunk UI)
 - **Backend API**: FastAPI (Python 3.11)
 - **Inference**: PyTorch Geometric (GraphSAGE Model)
 - **Infrastructure**: Redis (Cache), MLflow (Model Registry), Nginx (Reverse Proxy)
 
-## 🛠️ Configuration
+##  Configuration
 
 Edit the `.env` file to customize:
 - `MODEL_PATH`: Location of the trained GNN model.
